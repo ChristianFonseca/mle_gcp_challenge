@@ -21,29 +21,29 @@ Nuestra "ML Factory" actual, diseñada para desplegar recursos como Buckets GCS 
 ```mermaid
 graph TD
   subgraph "Fase 1: Diseño y Preparación"
-    A["1. Ingeniería y Versionado de Prompts
-(Git / GCS)"] --> B["2. Preparación de Datos para Fine-Tuning
+    A["Ingeniería y Versionado de Prompts
+(Git / GCS)"] --> B["Preparación de Datos para Fine-Tuning
 (Dataflow + BigQuery)"]
   end
 
   subgraph "Fase 2: Experimentación y Fine-Tuning (Vertex AI)"
-    B --> C["3. Pipeline de Fine-Tuning
+    B --> C["Pipeline de Fine-Tuning
 (Vertex AI Pipelines)"]
-    C -- Lanza Job con GPUs --> D["4. Vertex AI Custom Job
+    C -- Lanza Job con GPUs --> D["Vertex AI Custom Job
 (Entrenamiento Distribuido)"]
     C -- Registra Experimento --> E["MLFlow / Vertex AI Experiments"]
   end
 
   subgraph "Fase 3: Evaluación y Despliegue"
-    D -- Genera Modelo --> F["5. Evaluación Automatizada y Humana
+    D -- Genera Modelo --> F["Evaluación Automatizada y Humana
 (Vertex AI Evaluation / Labeling)"]
     F --> G{¿Calidad Aceptable?}
-    G -- Sí --> H["6. Registro y Despliegue
+    G -- Sí --> H["Registro y Despliegue
 (Vertex AI Model Registry & Endpoint)"]
   end
 
   subgraph "Fase 4: Monitoreo Continuo"
-    H --> I["7. Monitoreo de LLM
+    H --> I["Monitoreo de LLM
 (Calidad, Costo, Drift de Embeddings)"]
   end
 
