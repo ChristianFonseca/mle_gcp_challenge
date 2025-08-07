@@ -20,25 +20,33 @@ Nuestra "ML Factory" actual, diseñada para desplegar recursos como Buckets GCS 
 
 ```mermaid
 graph TD
-    subgraph "Fase 1: Diseño y Preparación"
-        A[1. Ingeniería y Versionado de Prompts\n(Git / GCS)] --> B[2. Preparación de Datos para Fine-Tuning\n(Dataflow + BigQuery)];
-    end
+  subgraph "Fase 1: Diseño y Preparación"
+    A["1. Ingeniería y Versionado de Prompts
+(Git / GCS)"] --> B["2. Preparación de Datos para Fine-Tuning
+(Dataflow + BigQuery)"]
+  end
 
-    subgraph "Fase 2: Experimentación y Fine-Tuning (Vertex AI)"
-        B --> C[3. Pipeline de Fine-Tuning\n(Vertex AI Pipelines)];
-        C -- Lanza Job con GPUs --> D[4. Vertex AI Custom Job\n(Entrenamiento Distribuido)];
-        C -- Registra Experimento --> E[MLFlow / Vertex AI Experiments];
-    end
+  subgraph "Fase 2: Experimentación y Fine-Tuning (Vertex AI)"
+    B --> C["3. Pipeline de Fine-Tuning
+(Vertex AI Pipelines)"]
+    C -- Lanza Job con GPUs --> D["4. Vertex AI Custom Job
+(Entrenamiento Distribuido)"]
+    C -- Registra Experimento --> E["MLFlow / Vertex AI Experiments"]
+  end
 
-    subgraph "Fase 3: Evaluación y Despliegue"
-        D -- Genera Modelo --> F[5. Evaluación Automatizada y Humana\n(Vertex AI Evaluation / Labeling)];
-        F --> G{¿Calidad Aceptable?};
-        G -- Sí --> H[6. Registro y Despliegue\n(Vertex AI Model Registry & Endpoint)];
-    end
+  subgraph "Fase 3: Evaluación y Despliegue"
+    D -- Genera Modelo --> F["5. Evaluación Automatizada y Humana
+(Vertex AI Evaluation / Labeling)"]
+    F --> G{¿Calidad Aceptable?}
+    G -- Sí --> H["6. Registro y Despliegue
+(Vertex AI Model Registry & Endpoint)"]
+  end
 
-    subgraph "Fase 4: Monitoreo Continuo"
-        H --> I[7. Monitoreo de LLM\n(Calidad, Costo, Drift de Embeddings)];
-    end
+  subgraph "Fase 4: Monitoreo Continuo"
+    H --> I["7. Monitoreo de LLM
+(Calidad, Costo, Drift de Embeddings)"]
+  end
+
 ```
 
 ## 3. Aplicabilidad en el Contexto de la ML Factory
