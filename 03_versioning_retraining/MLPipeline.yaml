@@ -1,0 +1,17 @@
+name: mlflow-churn
+
+python_env: requirements.txt
+
+entry_points:
+  main:
+    description: "Ejecuta el pipeline unificado de entrenamiento, experimentación y registro."
+    parameters:
+      gcs_data_path: {type: str, default: "../00_data/clientes.csv"}
+      registered_model_name: {type: str, default: "churn-champion-model"}
+    command: "python src/mlflow_pipeline.py --gcs-data-path {gcs_data_path} --registered-model-name {registered_model_name}"
+
+  promote:
+    description: "Promueve el campeón si supera al modelo en producción."
+    parameters:
+      model_name: {type: str, default: "churn-champion-model"}
+    command: "python src/promote_champion.py --model-name {model_name}"
