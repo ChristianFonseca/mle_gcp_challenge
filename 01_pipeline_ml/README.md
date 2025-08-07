@@ -79,34 +79,34 @@ Para incluir el diagrama de entorno local, inserta la siguiente imagen:
 ```mermaid
 graph TD
     subgraph "Desarrollador en su Máquina Local"
-        A[<b>1. Iniciar Ejecución</b><br>bash run_local_pipeline.sh]
+        A[<b>1. Iniciar Ejecución</b><br>Comando: bash run_local_pipeline.sh]
     end
 
-    subgraph "Sistema de Archivos Local (Estructura de Carpetas)"
-        F1[/data/clientes.csv]
-        F2[/processed/train.csv & test.csv]
-        F3[/models/churn_model.pkl]
-        F4[/reports/evaluation_metrics.json]
+    subgraph "Sistema de Archivos Local"
+        F1[Archivo de entrada<br><b>clientes.csv</b> en carpeta /data]
+        F2[Archivos procesados<br><b>train.csv</b> y <b>test.csv</b> en carpeta /processed]
+        F3[Modelo guardado<br><b>churn_model.pkl</b> en carpeta /models]
+        F4[Reporte final<br><b>evaluation_metrics.json</b> en carpeta /reports]
     end
 
     subgraph "Orquestador Local: run_local_pipeline.sh"
-        B[<b>Paso 2: Procesar Datos</b><br>python scripts/01_process_data.py]
-        C[<b>Paso 3: Entrenar Modelo</b><br>python scripts/02_train_model.py]
-        D[<b>Paso 4: Evaluar Modelo</b><br>python scripts/03_evaluate_model.py]
-        E[<b>5. Fin del Proceso</b><br>Verificar archivos de salida]
+        B[<b>Paso 2: Procesar Datos</b><br>Script: 01_process_data.py]
+        C[<b>Paso 3: Entrenar Modelo</b><br>Script: 02_train_model.py]
+        D[<b>Paso 4: Evaluar Modelo</b><br>Script: 03_evaluate_model.py]
+        E[<b>5. Fin del Proceso</b>]
     end
 
     %% Conexiones del Flujo
     A --> B;
-    B -- Lee de --> F1;
-    B -- Escribe en --> F2;
+    B -- Lee --> F1;
+    B -- Escribe --> F2;
     B --> C;
-    C -- Lee de --> F2;
-    C -- Escribe en --> F3;
+    C -- Lee --> F2;
+    C -- Escribe --> F3;
     C --> D;
-    D -- Lee de --> F2;
-    D -- Lee de --> F3;
-    D -- Escribe en --> F4;
+    D -- Lee --> F2;
+    D -- Lee --> F3;
+    D -- Escribe --> F4;
     D --> E;
 
     style A fill:#f8d7da
@@ -120,15 +120,11 @@ graph TD
 
 Proceso de cambios en el repositorio.
 
-```markdown
 ![Diagrama de Entorno con Vertex AI](./vertex_1.png)
-```
 
 Proceso de entrenamiento y despliegue del modelo en Vertex AI automatizado.
 
-```markdown
 ![Diagrama de Entorno con Vertex AI](./vertex_2.png)
-```
 
 ## Contribución
 
