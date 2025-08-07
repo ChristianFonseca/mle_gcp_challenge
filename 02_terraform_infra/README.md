@@ -71,3 +71,7 @@ Para destruir todos los recursos creados por este proyecto y evitar costos, ejec
 ```bash
 terraform destroy -var-file="terraform.tfvars"
 ```
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.

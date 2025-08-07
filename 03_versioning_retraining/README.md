@@ -41,3 +41,7 @@ El script comparará las métricas `test_roc_auc` del modelo en `Staging` vs `Pr
 ### **Paso 5: Verificar el Resultado**
 
 Refresca la UI de MLFlow para confirmar que la etapa del modelo ha sido actualizada correctamente.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.

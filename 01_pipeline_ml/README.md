@@ -66,7 +66,7 @@ gcloud ai custom-jobs create \
 ├── requirements.txt       # Dependencias del proyecto
 ├── churn_model_v2.pkl     # Modelo entrenado (versión local)
 ├── experimentacion_v2.ipynb  # Notebook de experimentación
-├── LICENSE                # Licencia GNU GPL v3.0
+├── LICENSE                # Licencia MIT
 └── README.md              # Este archivo
 ```
 
@@ -310,4 +310,4 @@ Para contribuir a este proyecto:
 
 ## Licencia
 
-Este proyecto está licenciado bajo la Licencia GNU General Public License v3.0 - ver el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
