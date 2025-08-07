@@ -198,16 +198,6 @@ flowchart TD
     style EP fill:#d1ecf1,stroke-width:2px,stroke:#0c5460
 ```
 
-## Contribución
-
-Para contribuir a este proyecto:
-
-1. Haz un fork del repositorio
-2. Crea una rama para tu característica (`git checkout -b feature/nueva-caracteristica`)
-3. Haz commit de tus cambios (`git commit -am 'Añadir nueva característica'`)
-4. Haz push a la rama (`git push origin feature/nueva-caracteristica`)
-5. Crea un nuevo Pull Request
-
 ## Cómo Ejecutarlo en Vertex AI
 
 Para correr este script, necesitas empaquetarlo en un contenedor Docker, subirlo a Artifact Registry de GCP y luego lanzar un CustomJob de Vertex AI.
@@ -307,6 +297,16 @@ gcloud ai custom-jobs create \
   --worker-pool-spec=machine-type=n1-standard-4,replica-count=1,container-image-uri=${IMAGE_URI} \
   --args="--gcs-data-path=${DATA_PATH}","--gcs-model-output-dir=${MODEL_OUTPUT_DIR}"
 ```
+
+## Contribución
+
+Para contribuir a este proyecto:
+
+1. Haz un fork del repositorio
+2. Crea una rama para tu característica (`git checkout -b feature/nueva-caracteristica`)
+3. Haz commit de tus cambios (`git commit -am 'Añadir nueva característica'`)
+4. Haz push a la rama (`git push origin feature/nueva-caracteristica`)
+5. Crea un nuevo Pull Request
 
 ## Licencia
 
