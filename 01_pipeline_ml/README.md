@@ -74,7 +74,7 @@ gcloud ai custom-jobs create \
 
 ### Diagrama de Entorno Local
 
-Para incluir el diagrama de entorno local, inserta la siguiente imagen:
+Diagrama de flujo de datos y ejecución del pipeline en entorno local.
 
 ```mermaid
 graph TD
@@ -120,11 +120,83 @@ graph TD
 
 Proceso de cambios en el repositorio.
 
-![Diagrama de Entorno con Vertex AI](./vertex_1.png)
+```mermaid
+graph TD
+    subgraph "Desarrollador (Entorno Local)"
+        A[Escribir/Modificar Código - main.py - Dockerfile - requirements.txt]
+        B[Subir cambios a Git git push origin main]
+    end
+
+    subgraph "GCP: Servicios de CI/CD"
+        C[Cloud Source Repositories / GitHub]
+        D[Cloud Build Trigger - Detecta el push]
+        E[Cloud Build Job - Ejecuta gcloud builds submit]
+        F[Artifact Registry - Almacén de Imágenes Docker]
+    end
+
+    %% Conexiones del Flujo de Build
+    A --> B;
+    B --> C;
+    C --> D;
+    D -- Trigger --> E;
+    E -- Construye y Empaqueta --> F[Imagen Docker churn-trainer:latest];
+
+    style A fill:#e6f2ff
+    style B fill:#e6f2ff
+    style C fill:#fce8b2
+    style D fill:#fce8b2
+    style E fill:#fce8b2
+    style F fill:#d4edda,stroke-width:2px,stroke:#155724
+```
 
 Proceso de entrenamiento y despliegue del modelo en Vertex AI automatizado.
 
-![Diagrama de Entorno con Vertex AI](./vertex_2.png)
+```mermaid
+flowchart TD
+    subgraph "A. Trigger del Pipeline"
+        T1[Cloud Scheduler por ejemplo cada 1er día del mes]
+    end
+
+    subgraph "B. Almacenamiento y Artefactos"
+        GCS1[GCS Bucket Datos Crudos clientes.csv]
+        AR[Artifact Registry Imagen churn-trainer:latest]
+        GCS2[GCS Bucket Modelo Entrenado model.pkl]
+    end
+
+    subgraph "C. Orquestación y Ejecución: Vertex AI Pipelines"
+        P1[Inicio del Pipeline]
+        P2["Componente 1: Lanzar Custom Training Job"]
+        P3["Componente 2: Evaluar y Registrar Modelo"]
+        P4{"¿Métricas mayor que Umbral?"}
+        P5["Componente 3: Desplegar en Endpoint"]
+    end
+
+    subgraph "D. Servicio de Predicciones"
+        EP[Vertex AI Endpoint API para predicciones en vivo]
+    end
+
+    %% Conexiones del Flujo del Pipeline
+    T1 -- Trigger --> P1
+    P1 --> P2
+
+    %% Conexiones del Custom Job
+    P2 -- Usa imagen de --> AR
+    P2 -- Lee datos de --> GCS1
+    P2 -- Guarda modelo en --> GCS2
+
+    %% Continuación del Pipeline
+    GCS2 -- Provee modelo para --> P3
+    P3 --> P4
+    P4 -- "Sí" --> P5
+    P4 -- "No" --> FIN([Fin del Pipeline])
+    P5 -- Crea/Actualiza --> EP
+
+    style P2 fill:#cce5ff,stroke-width:2px,stroke:#004085
+    style AR fill:#d4edda
+    style GCS1 fill:#fff3cd
+    style GCS2 fill:#fff3cd
+    style EP fill:#d1ecf1,stroke-width:2px,stroke:#0c5460
+```
 
 ## Contribución
 
