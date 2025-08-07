@@ -21,23 +21,23 @@ Nuestra "ML Factory" actual, diseñada para desplegar recursos como Buckets GCS 
 ```mermaid
 graph TD
     subgraph "Fase 1: Diseño y Preparación"
-        A[1. Ingeniería y Versionado de Prompts<br>(Git / GCS)] --> B[2. Preparación de Datos para Fine-Tuning<br>(Dataflow + BigQuery)];
+        A[1. Ingeniería y Versionado de Prompts\n(Git / GCS)] --> B[2. Preparación de Datos para Fine-Tuning\n(Dataflow + BigQuery)];
     end
 
     subgraph "Fase 2: Experimentación y Fine-Tuning (Vertex AI)"
-        B --> C[3. Pipeline de Fine-Tuning<br>(Vertex AI Pipelines)];
-        C -- Lanza Job con GPUs --> D[4. Vertex AI Custom Job<br>(Entrenamiento Distribuido)];
+        B --> C[3. Pipeline de Fine-Tuning\n(Vertex AI Pipelines)];
+        C -- Lanza Job con GPUs --> D[4. Vertex AI Custom Job\n(Entrenamiento Distribuido)];
         C -- Registra Experimento --> E[MLFlow / Vertex AI Experiments];
     end
 
     subgraph "Fase 3: Evaluación y Despliegue"
-        D -- Genera Modelo --> F[5. Evaluación Automatizada y Humana<br>(Vertex AI Evaluation / Labeling)];
+        D -- Genera Modelo --> F[5. Evaluación Automatizada y Humana\n(Vertex AI Evaluation / Labeling)];
         F --> G{¿Calidad Aceptable?};
-        G -- Sí --> H[6. Registro y Despliegue<br>(Vertex AI Model Registry & Endpoint)];
+        G -- Sí --> H[6. Registro y Despliegue\n(Vertex AI Model Registry & Endpoint)];
     end
-    
+
     subgraph "Fase 4: Monitoreo Continuo"
-        H --> I[7. Monitoreo de LLM<br>(Calidad, Costo, Drift de Embeddings)];
+        H --> I[7. Monitoreo de LLM\n(Calidad, Costo, Drift de Embeddings)];
     end
 ```
 
