@@ -16,7 +16,7 @@ Las diferencias con MLOps tradicional son:
 
 ## 2. Adaptando la ML Factory en GCP para LLMOps
 
-Nuestra "ML Factory" actual, diseñada para desplegar recursos como Buckets GCS y Datasets de BigQuery a través de Terraform, y para orquestar pipelines en Vertex AI, es la base perfecta. La integración de LLMOps consiste en especializar cada etapa de esta fábrica.
+Nuestra ML Factory actual, diseñada para desplegar recursos como Buckets GCS y Datasets de BigQuery a través de Terraform, y para orquestar pipelines en Vertex AI, es la base perfecta. La integración de LLMOps consiste en especializar cada etapa de esta fábrica.
 
 ```mermaid
 graph TD
