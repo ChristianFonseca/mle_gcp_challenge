@@ -257,9 +257,9 @@ Asegúrate de que tu archivo clientes.csv esté en un bucket de Google Cloud Sto
 Abre una terminal de Cloud Shell o una terminal local con gcloud configurado.
 
 ```bash
-# Variables (¡reemplaza con tus valores!)
+# Variables (reemplazar con tus valores)
 export PROJECT_ID="tu-proyecto-gcp"
-export REGION="us-central1" # o tu región preferida
+export REGION="us-central1" # región preferida
 export REPO_NAME="churn-repo"
 export IMAGE_NAME="churn-trainer"
 export IMAGE_TAG="latest"
@@ -284,7 +284,7 @@ gcloud builds submit --tag ${IMAGE_URI} .
 Finalmente, lanza el CustomJob. Este comando le dice a Vertex AI que use tu contenedor y le pasa las rutas de GCS como argumentos.
 
 ```bash
-# Variables del Job (¡reemplaza con tus valores!)
+# Variables del Job (reemplazar con tus valores)
 export BUCKET_NAME="mi-bucket-churn" # El bucket que creaste
 export JOB_NAME="churn_training_job_$(date +%Y%m%d_%H%M%S)"
 export DATA_PATH="gs://${BUCKET_NAME}/data/clientes.csv"
